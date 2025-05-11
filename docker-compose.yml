@@ -1,0 +1,43 @@
+
+# filepath: d:\kuliah\semester 4\Big data\tugas3\scraping\iqplus_scraper_container\docker-compose.yml
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - airflow_network
+
+  airflow_scraper:  
+    build: .
+    container_name: airflow
+    restart: always
+    shm_size: 2gb  # Tambahan shared memory untuk Chrome
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=SequentialExecutor
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - PYTHONPATH=/opt/airflow
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - airflow_logs:/opt/airflow/logs
+    ports:
+      - "8080:8080"
+    command: bash -c "airflow db init && airflow users create --username admin --password admin --firstname Air --lastname Flow --role Admin --email admin@example.com && airflow scheduler & airflow webserver"
+    depends_on:
+      - mongodb
+    networks:
+      - airflow_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  mongodb_data:
+  airflow_logs:
+
+networks:
+  airflow_network:
+    driver: bridge
