@@ -82,10 +82,29 @@ $ docker-compose up -d
 
 Berikut beberapa contoh hasil scraping dan alur program:
 
-| Alur Scraping | Hasil Scraping | Data di MongoDB |
-|--------------|----------------|-----------------|
-| ![Graph](image-web-localhost/graph.png) | ![Berhasil](image-web-localhost/ketika-berhasil-mengambil-berita.jpg) | ![MongoDB](image-web-localhost/store-mongodb.jpg) |
-| ![Ambil Berita Kemarin](image-web-localhost/ambil-berita-kemarin(minggu).png) | ![Scraping Tanggal 12](image-web-localhost/scraping-tanggal12.jpg) | |
+### Contoh Gambar Dokumentasi
+
+Berikut adalah beberapa contoh hasil scraping dan alur program:
+
+#### Alur Scraping
+![Graph](image-web-localhost/graph.png)
+
+#### Hasil Scraping
+- **Berhasil Mengambil Berita** 
+    
+    Output yang dihasilkan ketika berhasil mengambil berita
+    ![Berhasil](image-web-localhost/ketika-berhasil-mengambil-berita.jpg)
+
+- **Ambil Berita Kemarin**  
+    Gagal mengambil berita (karena kemarin adalah hari minggu)
+    ![Ambil Berita Kemarin](image-web-localhost/ambil-berita-kemarin(minggu).png)
+
+- **Scraping Tanggal 12**  
+    Scraping tanggal 12 tidak ada berita tanggal 11, melainkan tanggal 9
+    ![Scraping Tanggal 12](image-web-localhost/scraping-tanggal12.jpg)
+
+#### Data di MongoDB
+![MongoDB](image-web-localhost/store-mongodb.jpg)
 
 ---
 
